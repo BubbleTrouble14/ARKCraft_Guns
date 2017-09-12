@@ -1,5 +1,7 @@
 package com.bubble.gunmod.a;
 
+import java.util.stream.Collectors;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,6 +37,15 @@ public interface IConsuming {
 	public default int getAmmunition(ItemStack stack) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		return nbt.getInteger(AMMUNITION_AMOUNT_KEY);
+	}
+
+	public default int getTotalAmmunition(ItemStack stack, EntityPlayer p) {
+		ItemAmmunition item = getAmmunitionItem(stack);
+		int am = getAmmunition(stack);
+		for (ItemStack is : p.inventory.mainInventory.stream().filter(i -> !i.isEmpty() && i.getItem() == item)
+				.collect(Collectors.toList()))
+			am += is.getCount();
+		return am;
 	}
 
 	public default void setAmmunition(ItemStack stack, int amount) {

@@ -1,4 +1,6 @@
-package com.bubble.gunmod.a;
+package com.bubble.gunmod.common.entity;
+
+import com.bubble.gunmod.a.EntityProjectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -6,20 +8,21 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntitySimpleBullet extends EntityProjectile
+public class EntitySimpleRifleAmmo extends EntityProjectile
 {
-	public EntitySimpleBullet(World world)
+
+	public EntitySimpleRifleAmmo(World world)
 	{
 		super(world);
 	}
 
-	public EntitySimpleBullet(World world, double d, double d1, double d2)
+	public EntitySimpleRifleAmmo(World world, double x, double y, double z)
 	{
 		this(world);
-		setPosition(d, d1, d2);
+		setPosition(x, y, z);
 	}
 
-	public EntitySimpleBullet(World worldIn, EntityLivingBase shooter, float speed, float inaccuracy, double damage, int range)
+	public EntitySimpleRifleAmmo(World worldIn, EntityLivingBase shooter, float speed, float inaccuracy, double damage, int range)
 	{
 		super(worldIn, shooter, speed, inaccuracy, damage, range);
 	}
@@ -57,5 +60,4 @@ public class EntitySimpleBullet extends EntityProjectile
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

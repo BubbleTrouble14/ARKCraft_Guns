@@ -51,7 +51,7 @@ public class WaterGun extends ItemRangedWeapon{
 	
 	@Override
 	public boolean isValidAmmunition(ItemAmmunition item) {
-		return item == RegisterItems.item_test_ammo;
+		return item == RegisterItems.advanced_bullet;
 	}
 
 	@Override

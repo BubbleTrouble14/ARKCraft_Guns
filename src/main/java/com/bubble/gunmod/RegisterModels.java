@@ -16,7 +16,7 @@ public class RegisterModels
     @SideOnly(Side.CLIENT)
 	public static void initModels()
 	{
-		ModelLoader.setCustomModelResourceLocation(RegisterItems.item_test_gun, 0,
+		ModelLoader.setCustomModelResourceLocation(RegisterItems.fabricated_pistol, 0,
 				new ModelResourceLocation(Main.MODID + ":test_gun", "inventory"));
 		
     	gun.initModels();

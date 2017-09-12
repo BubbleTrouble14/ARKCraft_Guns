@@ -29,7 +29,6 @@ public abstract class ItemRangedWeapon extends Item implements IConsuming, ISupp
 				return 0;
 			for (AttachmentType type : getSupportedAttachmentTypes()) {
 				if (type == at) {
-					System.out.println(type);
 					return type.getId();
 				}
 			}

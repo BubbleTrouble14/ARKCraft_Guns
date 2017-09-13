@@ -2,7 +2,6 @@ package com.bubble.gunmod.item;
 
 import com.bubble.gunmod.a.AttachmentType;
 import com.bubble.gunmod.a.ItemAmmunition;
-import com.bubble.gunmod.a.ItemRangedWeapon;
 
 import net.minecraft.item.ItemStack;
 

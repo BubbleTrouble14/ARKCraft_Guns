@@ -1,5 +1,7 @@
 package com.bubble.gunmod.a;
 
+import com.bubble.gunmod.item.ItemRangedWeapon;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;

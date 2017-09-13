@@ -4,7 +4,6 @@ import com.bubble.gunmod.Main;
 import com.bubble.gunmod.RegisterItems;
 import com.bubble.gunmod.a.AttachmentType;
 import com.bubble.gunmod.a.ItemAmmunition;
-import com.bubble.gunmod.a.ItemRangedWeapon;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

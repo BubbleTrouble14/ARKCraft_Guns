@@ -2,7 +2,7 @@ package com.bubble.gunmod.client.event;
 
 import org.lwjgl.opengl.GL11;
 
-import com.bubble.gunmod.a.ItemRangedWeapon;
+import com.bubble.gunmod.item.ItemRangedWeapon;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

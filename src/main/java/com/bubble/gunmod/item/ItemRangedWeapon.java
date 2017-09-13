@@ -1,6 +1,10 @@
-package com.bubble.gunmod.a;
+package com.bubble.gunmod.item;
 
 import com.bubble.gunmod.Main;
+import com.bubble.gunmod.a.AttachmentType;
+import com.bubble.gunmod.a.IConsuming;
+import com.bubble.gunmod.a.ISupporting;
+import com.bubble.gunmod.a.ItemAmmunition;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -82,33 +86,5 @@ public abstract class ItemRangedWeapon extends Item implements IConsuming, ISupp
 		if (!slotChanged && oldStack.getItem() == newStack.getItem())
 			return false;
 		return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
-	}
-	
-    @SideOnly(Side.CLIENT)
-	public void initModels()
-	{
-		ModelResourceLocation scope = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_scope", "inventory");
-		ModelResourceLocation scopereload = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_scope_reload", "inventory");
-		ModelResourceLocation laser = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_laser", "inventory");
-		ModelResourceLocation laserreload = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_laser_reload", "inventory");
-		ModelResourceLocation silencer = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_silencer", "inventory");
-		ModelResourceLocation silencerreload = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_silencer_reload", "inventory");
-		ModelResourceLocation flashlight = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_flashlight", "inventory");
-		ModelResourceLocation flashlightreload = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_flashlight_reload", "inventory");
-		ModelResourceLocation reload = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_reload", "inventory");
-		ModelResourceLocation normal = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName(),"inventory");
-
-		ModelBakery.registerItemVariants(this, scope, laser, silencer, flashlight, reload, normal, scopereload,
-				laserreload, silencerreload, flashlightreload);
 	}
 }

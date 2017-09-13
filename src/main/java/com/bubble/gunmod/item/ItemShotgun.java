@@ -2,7 +2,6 @@ package com.bubble.gunmod.item;
 
 import com.bubble.gunmod.a.AttachmentType;
 import com.bubble.gunmod.a.ItemAmmunition;
-import com.bubble.gunmod.a.ItemRangedWeapon;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -48,10 +47,4 @@ public class ItemShotgun extends ItemRangedWeapon{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public void initModels() {
-		super.initModels();
-	}
-
 }

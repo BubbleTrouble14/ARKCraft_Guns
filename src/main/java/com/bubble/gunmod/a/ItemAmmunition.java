@@ -3,11 +3,11 @@ package com.bubble.gunmod.a;
 import com.bubble.gunmod.Main;
 
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 
 public abstract class ItemAmmunition extends Item implements IAmmunition {
-	public ItemAmmunition(ResourceLocation name) {
+	public ItemAmmunition(String name) {
 		this.setRegistryName(name);
+		setUnlocalizedName(Main.MODID + "." + name);
 		setCreativeTab(Main.tabGuns);
 	}
 }

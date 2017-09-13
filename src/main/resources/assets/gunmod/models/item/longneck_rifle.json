@@ -362,5 +362,65 @@
 			"translation":  [ -1.391, 1.9999, 0.6959 ],
 			"scale":  [ 1.3, 1.3, 1.3 ]
 		}
-	}
+	},
+	    "overrides": [
+        {
+            "predicate": {
+                "reloading": 1
+            },
+            "model": "gunmod:item/longneck_rifle_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 1,
+                "reloading":1
+            },
+            "model": "gunmod:item/longneck_rifle_scope_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 2,
+                "reloading":1
+            },
+            "model": "gunmod:item/longneck_rifle_flashlight_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 3,
+                "reloading":1
+            },
+            "model": "gunmod:item/longneck_rifle_laser_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 4,
+                "reloading":1
+            },
+            "model": "gunmod:item/longneck_rifle_silencer_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 1
+            },
+            "model": "gunmod:item/longneck_rifle_scope"
+        },
+        {
+            "predicate": {
+                "attachment": 2
+            },
+            "model": "gunmod:item/longneck_rifle_flashlight"
+        },
+        {
+            "predicate": {
+                "attachment": 3
+            },
+            "model": "gunmod:item/longneck_rifle_laser"
+        },
+        {
+            "predicate": {
+                "attachment": 4
+            },
+            "model": "gunmod:item/longneck_rifle_silencer"
+        }
+    ]
 }

@@ -5,11 +5,10 @@ import com.bubble.gunmod.a.ItemAmmunition;
 import com.bubble.gunmod.a.ItemRangedWeapon;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 public class ItemSimplePistol extends ItemRangedWeapon {
 
-	public ItemSimplePistol(ResourceLocation name) {
+	public ItemSimplePistol(String name) {
 		super(name);
 	}
 
@@ -47,6 +46,11 @@ public class ItemSimplePistol extends ItemRangedWeapon {
 	public void setAttachment(ItemStack itemStack, ItemStack attachment) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void initModels() {
+		super.initModels();
 	}
 
 }

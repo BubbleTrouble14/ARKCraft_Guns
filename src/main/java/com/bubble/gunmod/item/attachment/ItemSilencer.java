@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class ItemSilencer extends ItemAttachment{
 
-	public ItemSilencer(ResourceLocation name) {
+	public ItemSilencer(String name) {
 		super(name);
 	}
 

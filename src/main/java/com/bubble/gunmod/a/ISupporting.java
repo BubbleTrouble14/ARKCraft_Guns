@@ -30,7 +30,7 @@ public interface ISupporting {
 
 	public default AttachmentType getAttachmentType(ItemStack stack) {
 		ItemStack att = getAttachment(stack);
-		if (!att.isEmpty()) {
+		if (att != null && !att.isEmpty()) {
 			return ((IAttachment) att.getItem()).getType();
 		}
 		return null;

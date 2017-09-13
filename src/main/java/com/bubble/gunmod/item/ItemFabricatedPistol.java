@@ -5,12 +5,11 @@ import com.bubble.gunmod.a.ItemAmmunition;
 import com.bubble.gunmod.a.ItemRangedWeapon;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 public class ItemFabricatedPistol extends ItemRangedWeapon
 {
 
-	public ItemFabricatedPistol(ResourceLocation name) {
+	public ItemFabricatedPistol(String name) {
 		super(name);
 	}
 

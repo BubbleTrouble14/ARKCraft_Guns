@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class ItemScope extends ItemAttachment{
 
-	public ItemScope(ResourceLocation name) {
+	public ItemScope(String name) {
 		super(name);
 	}
 

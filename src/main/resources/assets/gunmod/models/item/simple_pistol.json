@@ -269,5 +269,65 @@
 			"translation":  [ 0, 0.7, 0 ],
 			"scale":  [ 1.4, 1.4, 1.4 ]
 		}
-	}
+	},
+		    "overrides": [
+        {
+            "predicate": {
+                "reloading": 1
+            },
+            "model": "gunmod:item/simple_pistol_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 1,
+                "reloading":1
+            },
+            "model": "gunmod:item/simple_pistol_scope_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 2,
+                "reloading":1
+            },
+            "model": "gunmod:item/simple_pistol_flashlight_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 3,
+                "reloading":1
+            },
+            "model": "gunmod:item/simple_pistol_laser_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 4,
+                "reloading":1
+            },
+            "model": "gunmod:item/simple_pistol_silencer_reload"
+        },
+        {
+            "predicate": {
+                "attachment": 1
+            },
+            "model": "gunmod:item/simple_pistol_scope"
+        },
+        {
+            "predicate": {
+                "attachment": 2
+            },
+            "model": "gunmod:item/simple_pistol_flashlight"
+        },
+        {
+            "predicate": {
+                "attachment": 3
+            },
+            "model": "gunmod:item/simple_pistol_laser"
+        },
+        {
+            "predicate": {
+                "attachment": 4
+            },
+            "model": "gunmod:item/simple_pistol_silencer"
+        }
+    ]
 }

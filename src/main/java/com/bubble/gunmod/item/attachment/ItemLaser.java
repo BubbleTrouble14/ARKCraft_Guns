@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class ItemLaser extends ItemAttachment{
 
-	public ItemLaser(ResourceLocation name) {
+	public ItemLaser(String name) {
 		super(name);
 	}
 

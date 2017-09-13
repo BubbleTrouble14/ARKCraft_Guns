@@ -17,7 +17,6 @@ import com.bubble.gunmod.item.attachment.ItemSilencer;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,38 +31,36 @@ public class RegisterItems
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) 
     {
-    	//Weapons
-    	simple_pistol = new ItemSimplePistol(new ResourceLocation(Main.MODID, "simple_pistol"));
-    	longneck_rifle = new ItemLongneckRifle(new ResourceLocation(Main.MODID, "longneck_rifle"));
-    	shotgun = new ItemShotgun(new ResourceLocation(Main.MODID, "shotgun"));
-    	fabricated_pistol = new ItemFabricatedPistol(new ResourceLocation(Main.MODID, "fabricated_pistol"));
+    	simple_pistol = new ItemSimplePistol("simple_pistol");
+    	longneck_rifle = new ItemLongneckRifle("longneck_rifle");
+    	shotgun = new ItemShotgun("shotgun");
+    	fabricated_pistol = new ItemFabricatedPistol("fabricated_pistol");
 
         event.getRegistry().register(simple_pistol);
         event.getRegistry().register(longneck_rifle);
         event.getRegistry().register(shotgun);
         event.getRegistry().register(fabricated_pistol);
 
-
         //Ammo
-        simple_bullet = new ItemAmmunition(new ResourceLocation(Main.MODID, "simple_bullet")) {
+        simple_bullet = new ItemAmmunition("simple_bullet") {
 			@Override
 			public EntityProjectile createProjectile(EntityPlayer player) {
 				return new EntitySimpleBullet(player.world, player, 5, 0, 5, 20);
 			}
 		};
-		simple_rifle_ammo = new ItemAmmunition(new ResourceLocation(Main.MODID, "simple_rifle_ammo")) {
+		simple_rifle_ammo = new ItemAmmunition("simple_rifle_ammo") {
 			@Override
 			public EntityProjectile createProjectile(EntityPlayer player) {
 				return new EntitySimpleRifleAmmo(player.world, player, 5, 0, 5, 20);
 			}
 		};
-		simple_shotgun_ammo = new ItemAmmunition(new ResourceLocation(Main.MODID, "simple_shotgun_ammo")) {
+		simple_shotgun_ammo = new ItemAmmunition("simple_shotgun_ammo") {
 			@Override
 			public EntityProjectile createProjectile(EntityPlayer player) {
 				return new EntitySimpleShotgunAmmo(player.world, player, 5, 0, 5, 20);
 			}
 		};
-		advanced_bullet = new ItemAmmunition(new ResourceLocation(Main.MODID, "advanced_bullet")) {
+		advanced_bullet = new ItemAmmunition("advanced_bullet") {
 			@Override
 			public EntityProjectile createProjectile(EntityPlayer player) {
 				return new EntityAdvancedBullet(player.world, player, 5, 0, 5, 20);
@@ -77,10 +74,10 @@ public class RegisterItems
 
         
         //Attachments 
-        scope = new ItemScope(new ResourceLocation(Main.MODID, "scope"));
-        flashlight = new ItemFlashlight(new ResourceLocation(Main.MODID, "flashlight"));
-        laser = new ItemLaser(new ResourceLocation(Main.MODID, "laser"));
-        silencer = new ItemSilencer(new ResourceLocation(Main.MODID, "silencer"));
+        scope = new ItemScope("scope");
+        flashlight = new ItemFlashlight("flashlight");
+        laser = new ItemLaser("laser");
+        silencer = new ItemSilencer("silencer");
 
         event.getRegistry().register(scope);
         event.getRegistry().register(flashlight);

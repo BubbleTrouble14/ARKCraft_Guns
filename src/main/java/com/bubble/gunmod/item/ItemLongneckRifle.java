@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ItemLongneckRifle extends ItemRangedWeapon{
 
-	public ItemLongneckRifle(ResourceLocation name) {
+	public ItemLongneckRifle(String name) {
 		super(name);
 	}
 
@@ -47,6 +47,11 @@ public class ItemLongneckRifle extends ItemRangedWeapon{
 	public void setAttachment(ItemStack itemStack, ItemStack attachment) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void initModels() {
+		super.initModels();
 	}
 
 }

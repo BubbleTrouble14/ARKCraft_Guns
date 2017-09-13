@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WaterGun extends ItemRangedWeapon{
 
-	public WaterGun(ResourceLocation name) {
+	public WaterGun(String name) {
 		super(name);
 	}
 	

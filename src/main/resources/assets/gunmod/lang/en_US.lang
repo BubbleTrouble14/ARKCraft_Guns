@@ -2,23 +2,21 @@
 itemGroup.gunTab=Bubble's Guns
 
 #weapons
-item.simple_pistol.name=Simple Pistol
-item.simple_bullet.name=Simple Bullet
-item.advanced_bullet.name=Advanced Bullet
-item.shotgun.name=Shotgun
-item.longneck_rifle.name=Longneck Rifle
-item.fabricated_pistol.name=Fabricated Pistol
-item.simple_rifle_ammo.name=Simple Rifle Ammo
-item.simple_shotgun_ammo.name=Simple Shotgun Ammo
-item.rocket_launcher.name=Rocket Launcher
-item.rocket_propelled_grenade.name=Rocket Propelled Grenade
+item.gunmod.simple_pistol.name=Simple Pistol
+item.gunmod.simple_bullet.name=Simple Bullet
+item.gunmod.advanced_bullet.name=Advanced Bullet
+item.gunmod.shotgun.name=Shotgun
+item.gunmod.longneck_rifle.name=Longneck Rifle
+item.gunmod.fabricated_pistol.name=Fabricated Pistol
+item.gunmod.simple_rifle_ammo.name=Simple Rifle Ammo
+item.gunmod.simple_shotgun_ammo.name=Simple Shotgun Ammo
 
 ##attachments
-item.scope.name=Scope
-item.laser.name=Laser
-item.silencer.name=Silencer
-item.holo_scope.name=Holo-Scope
-item.flash_light.name=Flashlight
+item.gunmod.scope.name=Scope
+item.gunmod.laser.name=Laser
+item.gunmod.silencer.name=Silencer
+item.gunmod.holo_scope.name=Holo-Scope
+item.gunmod.flashlight.name=Flashlight
 
 #Keybindings
 key.attachment=Open attachment inventory

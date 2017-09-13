@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class ItemFlashlight extends ItemAttachment{
 
-	public ItemFlashlight(ResourceLocation name) {
+	public ItemFlashlight(String name) {
 		super(name);
 	}
 

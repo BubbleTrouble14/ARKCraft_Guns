@@ -20,11 +20,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@EventBusSubscriber
+@EventBusSubscriber(Side.CLIENT)
 @SideOnly(Side.CLIENT)
 public class OverlayHandler {
 	@SubscribeEvent
-	public void renderGUIOverlay(RenderGameOverlayEvent.Post e) {
+	public static void renderGUIOverlay(RenderGameOverlayEvent.Post e) {
+		System.out.println("enter ui");
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayer p = mc.player;
 		ItemStack stack = p.getHeldItemMainhand();

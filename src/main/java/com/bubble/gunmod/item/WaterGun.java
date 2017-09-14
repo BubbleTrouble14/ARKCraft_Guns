@@ -64,4 +64,14 @@ public class WaterGun extends ItemRangedWeapon {
 		return 40;
 	}
 
+	@Override
+	public ItemAmmunition getDefaultAmmunition() {
+		return RegisterItems.advanced_bullet;
+	}
+
+	@Override
+	public int getIntervalDuration() {
+		return 20; // 1s
+	}
+
 }

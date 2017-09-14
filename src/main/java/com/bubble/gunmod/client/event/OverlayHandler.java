@@ -25,7 +25,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class OverlayHandler {
 	@SubscribeEvent
 	public static void renderGUIOverlay(RenderGameOverlayEvent.Post e) {
-		System.out.println("enter ui");
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayer p = mc.player;
 		ItemStack stack = p.getHeldItemMainhand();

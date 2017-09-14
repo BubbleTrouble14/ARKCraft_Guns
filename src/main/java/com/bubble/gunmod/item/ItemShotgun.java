@@ -1,10 +1,9 @@
 package com.bubble.gunmod.item;
 
 import com.bubble.gunmod.RegisterItems;
-import com.bubble.gunmod.a.AttachmentType;
 import com.bubble.gunmod.a.ItemAmmunition;
 
-public class ItemShotgun extends ItemRangedWeapon {
+public class ItemShotgun extends ItemRangedWeaponBase {
 
 	public ItemShotgun(String name) {
 		super(name);
@@ -26,7 +25,12 @@ public class ItemShotgun extends ItemRangedWeapon {
 	}
 
 	@Override
-	public boolean supportsAttachment(AttachmentType type) {
-		return false;
+	public ItemAmmunition getDefaultAmmunition() {
+		return RegisterItems.simple_shotgun_ammo;
+	}
+
+	@Override
+	public int getIntervalDuration() {
+		return 40; // 2s	
 	}
 }

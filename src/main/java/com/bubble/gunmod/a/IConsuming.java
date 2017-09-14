@@ -10,7 +10,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 public interface IConsuming {
-	public boolean isValidAmmunition(ItemAmmunition item);
 
 	public static void consumeAmmunition(EntityPlayer player, ItemStack stack, ItemAmmunition item) {
 		IConsuming stackItem = (IConsuming) stack.getItem();
@@ -79,6 +78,14 @@ public interface IConsuming {
 	public static boolean isReloading(ItemStack stack) {
 		return getReloadingProgress(stack) > 0;
 	}
+
+	public static void cancelReloading(ItemStack stack) {
+		setReloadingProgress(stack, 0);
+	}
+
+	public ItemAmmunition getDefaultAmmunition();
+
+	public boolean isValidAmmunition(ItemAmmunition item);
 
 	public int getReloadingTime();
 

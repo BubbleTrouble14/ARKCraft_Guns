@@ -30,4 +30,14 @@ public class ItemSimplePistol extends ItemRangedWeapon {
 		return type == AttachmentType.SCOPE || type == AttachmentType.FLASH || type == AttachmentType.LASER
 				|| type == AttachmentType.SILENCER;
 	}
+
+	@Override
+	public ItemAmmunition getDefaultAmmunition() {
+		return RegisterItems.simple_bullet;
+	}
+
+	@Override
+	public int getIntervalDuration() {
+		return 30;// 1.5s
+	}
 }

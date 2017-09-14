@@ -1,5 +1,10 @@
 package com.bubble.gunmod.client.event;
 
+import static com.bubble.gunmod.a.IConsuming.getAmmunition;
+import static com.bubble.gunmod.a.IConsuming.getReloadingProgress;
+import static com.bubble.gunmod.a.IConsuming.getTotalAmmunition;
+import static com.bubble.gunmod.a.IConsuming.isReloading;
+
 import org.lwjgl.opengl.GL11;
 
 import com.bubble.gunmod.item.ItemRangedWeapon;
@@ -26,7 +31,7 @@ public class OverlayHandler {
 		if (e.getType().equals(ElementType.HOTBAR)) {
 			if (!stack.isEmpty() && stack.getItem() instanceof ItemRangedWeapon) {
 				ItemRangedWeapon weapon = (ItemRangedWeapon) stack.getItem();
-				boolean loaded = weapon.getAmmunition(stack) == weapon.getAmmunitionCapacity();
+				boolean loaded = getAmmunition(stack) == weapon.getAmmunitionCapacity();
 				GL11.glColor4f(1F, 1F, 1F, 1F);
 				GL11.glDisable(GL11.GL_LIGHTING);
 				int x0 = e.getResolution().getScaledWidth() / 2 - 88 + p.inventory.currentItem * 20;
@@ -41,8 +46,8 @@ public class OverlayHandler {
 						color = 0x60348E00;
 					}
 
-				} else if (weapon.isReloading(stack)) {
-					f = Math.min((float) weapon.getReloadingProgress(stack) / weapon.getReloadingTime(), 1F);
+				} else if (isReloading(stack)) {
+					f = Math.min((float) getReloadingProgress(stack) / weapon.getReloadingTime(), 1F);
 					color = 0x60EAA800;
 				} else {
 					f = 0F;
@@ -54,8 +59,7 @@ public class OverlayHandler {
 			if (stack != null && stack.getItem() instanceof ItemRangedWeapon) {
 				String text = "";
 				if (!p.capabilities.isCreativeMode) {
-					ItemRangedWeapon weapon = (ItemRangedWeapon) stack.getItem();
-					text = weapon.getAmmunition(stack) + "/" + weapon.getTotalAmmunition(stack, p);
+					text = getAmmunition(stack) + "/" + getTotalAmmunition(stack, p);
 				} else {
 					text = '\u221e' + "";
 				}

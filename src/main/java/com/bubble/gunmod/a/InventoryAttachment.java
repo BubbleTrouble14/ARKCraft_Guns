@@ -20,7 +20,7 @@ public class InventoryAttachment implements IInventory {
 		this();
 		this.container = stack;
 		this.containerItem = (ISupporting) stack.getItem();
-		this.stack = containerItem.getAttachment(stack);
+		this.stack = ISupporting.getAttachment(stack);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class InventoryAttachment implements IInventory {
 
 	@Override
 	public void markDirty() {
-		containerItem.setAttachment(this.container, this.stack);
+		ISupporting.setAttachment(this.container, this.stack);
 	}
 
 	@Override

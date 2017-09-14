@@ -38,23 +38,4 @@ public class ItemFabricatedPistol extends ItemRangedWeapon
 	{
 		return type == AttachmentType.SCOPE ||  type == AttachmentType.FLASH ||  type == AttachmentType.LASER ||  type == AttachmentType.SILENCER;
 	}
-
-	@Override
-	public ItemStack getAttachment(ItemStack itemStack) 
-	{
-		return itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("attachment")
-				? new ItemStack(itemStack.getTagCompound().getCompoundTag("attachment"))
-				: ItemStack.EMPTY;
-	}
-
-	@Override
-	public void setAttachment(ItemStack itemStack, ItemStack attachment) 
-	{
-		if (itemStack.getTagCompound() == null)
-			itemStack.setTagCompound(new NBTTagCompound());
-
-		NBTTagCompound c = itemStack.getTagCompound();
-		c.setTag("attachment", attachment.serializeNBT());		
-	}
-
 }

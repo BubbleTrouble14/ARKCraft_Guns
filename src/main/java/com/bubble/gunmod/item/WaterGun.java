@@ -7,21 +7,17 @@ import com.bubble.gunmod.a.ItemAmmunition;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WaterGun extends ItemRangedWeapon{
+public class WaterGun extends ItemRangedWeapon {
 
 	public WaterGun(String name) {
 		super(name);
 	}
-	
-    @SideOnly(Side.CLIENT)
-	public void initModels()
-	{
+
+	@SideOnly(Side.CLIENT)
+	public void initModels() {
 		System.out.println("INIT MODEL");
 		ModelResourceLocation scope = new ModelResourceLocation(
 				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_scope", "inventory");
@@ -41,13 +37,13 @@ public class WaterGun extends ItemRangedWeapon{
 				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_flashlight_reload", "inventory");
 		ModelResourceLocation reload = new ModelResourceLocation(
 				Main.MODID + ":weapons/" + this.getUnlocalizedName() + "_reload", "inventory");
-		ModelResourceLocation normal = new ModelResourceLocation(
-				Main.MODID + ":weapons/" + this.getUnlocalizedName(),"inventory");
+		ModelResourceLocation normal = new ModelResourceLocation(Main.MODID + ":weapons/" + this.getUnlocalizedName(),
+				"inventory");
 
 		ModelBakery.registerItemVariants(this, scope, laser, silencer, flashlight, reload, normal, scopereload,
 				laserreload, silencerreload, flashlightreload);
 	}
-	
+
 	@Override
 	public boolean isValidAmmunition(ItemAmmunition item) {
 		return item == RegisterItems.advanced_bullet;
@@ -56,22 +52,6 @@ public class WaterGun extends ItemRangedWeapon{
 	@Override
 	public boolean supportsAttachment(AttachmentType type) {
 		return type == AttachmentType.SCOPE;
-	}
-
-	@Override
-	public ItemStack getAttachment(ItemStack itemStack) {
-		return itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("attachment")
-				? new ItemStack(itemStack.getTagCompound().getCompoundTag("attachment"))
-				: ItemStack.EMPTY;
-	}
-
-	@Override
-	public void setAttachment(ItemStack itemStack, ItemStack attachment) {
-		if (itemStack.getTagCompound() == null)
-			itemStack.setTagCompound(new NBTTagCompound());
-
-		NBTTagCompound c = itemStack.getTagCompound();
-		c.setTag("attachment", attachment.serializeNBT());
 	}
 
 	@Override

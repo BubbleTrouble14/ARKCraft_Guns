@@ -7,13 +7,10 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public interface ISupporting {
 	public boolean supportsAttachment(AttachmentType type);
-
-	public ItemStack getAttachment(ItemStack itemStack);
-
-	public void setAttachment(ItemStack itemStack, ItemStack attachment);
 
 	// public int getAttachmentCount();
 
@@ -28,11 +25,25 @@ public interface ISupporting {
 		return list;
 	}
 
-	public default AttachmentType getAttachmentType(ItemStack stack) {
+	public static AttachmentType getAttachmentType(ItemStack stack) {
 		ItemStack att = getAttachment(stack);
 		if (att != null && !att.isEmpty()) {
 			return ((IAttachment) att.getItem()).getType();
 		}
 		return null;
+	}
+
+	public static ItemStack getAttachment(ItemStack itemStack) {
+		return itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("attachment")
+				? new ItemStack(itemStack.getTagCompound().getCompoundTag("attachment"))
+				: ItemStack.EMPTY;
+	}
+
+	public static void setAttachment(ItemStack itemStack, ItemStack attachment) {
+		if (itemStack.getTagCompound() == null)
+			itemStack.setTagCompound(new NBTTagCompound());
+
+		NBTTagCompound c = itemStack.getTagCompound();
+		c.setTag("attachment", attachment.serializeNBT());
 	}
 }

@@ -1,13 +1,19 @@
 package com.bubble.gunmod.item;
 
+import static com.bubble.gunmod.a.IConsuming.consumeAmmunition;
+import static com.bubble.gunmod.a.IConsuming.getAmmunition;
+import static com.bubble.gunmod.a.IConsuming.getAmmunitionItem;
+import static com.bubble.gunmod.a.IConsuming.getReloadingProgress;
+import static com.bubble.gunmod.a.IConsuming.isReloading;
+import static com.bubble.gunmod.a.IConsuming.setAmmunition;
+import static com.bubble.gunmod.a.IConsuming.setReloadingProgress;
+
 import com.bubble.gunmod.Main;
 import com.bubble.gunmod.a.AttachmentType;
 import com.bubble.gunmod.a.IConsuming;
 import com.bubble.gunmod.a.ISupporting;
 import com.bubble.gunmod.a.ItemAmmunition;
 
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,8 +22,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ItemRangedWeapon extends Item implements IConsuming, ISupporting {
 	public ItemRangedWeapon(String name) {
@@ -32,7 +36,7 @@ public abstract class ItemRangedWeapon extends Item implements IConsuming, ISupp
 		});
 
 		addPropertyOverride(new ResourceLocation("attachment"), (stack, world, entity) -> {
-			AttachmentType at = getAttachmentType(stack);
+			AttachmentType at = ISupporting.getAttachmentType(stack);
 			if (at == null)
 				return 0;
 			for (AttachmentType type : getSupportedAttachmentTypes()) {
@@ -51,7 +55,7 @@ public abstract class ItemRangedWeapon extends Item implements IConsuming, ISupp
 		if (!isReloading(stack)) {
 			if (getAmmunition(stack) == 0) {
 				// Reload
-				this.setReloadingProgress(stack, getReloadingTime());
+				setReloadingProgress(stack, getReloadingTime());
 			} else {
 				// Shoot
 				setAmmunition(stack, getAmmunition(stack) - 1);

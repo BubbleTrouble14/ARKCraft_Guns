@@ -12,8 +12,9 @@ import net.minecraft.util.ResourceLocation;
 public interface IConsuming {
 	public boolean isValidAmmunition(ItemAmmunition item);
 
-	public default void consumeAmmunition(EntityPlayer player, ItemStack stack, ItemAmmunition item) {
-		int cap = getAmmunitionCapacity();
+	public static void consumeAmmunition(EntityPlayer player, ItemStack stack, ItemAmmunition item) {
+		IConsuming stackItem = (IConsuming) stack.getItem();
+		int cap = stackItem.getAmmunitionCapacity();
 		NonNullList<ItemStack> inv = player.inventory.mainInventory;
 
 		for (ItemStack i : inv) {
@@ -34,12 +35,12 @@ public interface IConsuming {
 	public static final String AMMUNITION_TYPE_KEY = "ammunitionitem";
 	public static final String RELOADING_PROGRESS = "reloadingtime";
 
-	public default int getAmmunition(ItemStack stack) {
+	public static int getAmmunition(ItemStack stack) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		return nbt.getInteger(AMMUNITION_AMOUNT_KEY);
 	}
 
-	public default int getTotalAmmunition(ItemStack stack, EntityPlayer p) {
+	public static int getTotalAmmunition(ItemStack stack, EntityPlayer p) {
 		ItemAmmunition item = getAmmunitionItem(stack);
 		int am = getAmmunition(stack);
 		for (ItemStack is : p.inventory.mainInventory.stream().filter(i -> !i.isEmpty() && i.getItem() == item)
@@ -48,34 +49,34 @@ public interface IConsuming {
 		return am;
 	}
 
-	public default void setAmmunition(ItemStack stack, int amount) {
+	public static void setAmmunition(ItemStack stack, int amount) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		nbt.setInteger(AMMUNITION_AMOUNT_KEY, amount);
 	}
 
-	public default ItemAmmunition getAmmunitionItem(ItemStack stack) {
+	public static ItemAmmunition getAmmunitionItem(ItemStack stack) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		String item = nbt.getString(AMMUNITION_TYPE_KEY);
 		return !item.isEmpty() ? (ItemAmmunition) Item.getByNameOrId(item) : null;
 	}
 
-	public default void setAmmunitionItem(ItemStack stack, ItemAmmunition ammunition) {
+	public static void setAmmunitionItem(ItemStack stack, ItemAmmunition ammunition) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		ResourceLocation resourcelocation = Item.REGISTRY.getNameForObject(ammunition);
 		nbt.setString(AMMUNITION_TYPE_KEY, resourcelocation.toString());
 	}
 
-	public default int getReloadingProgress(ItemStack stack) {
+	public static int getReloadingProgress(ItemStack stack) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		return nbt.getInteger(RELOADING_PROGRESS);
 	}
 
-	public default void setReloadingProgress(ItemStack stack, int value) {
+	public static void setReloadingProgress(ItemStack stack, int value) {
 		NBTTagCompound nbt = Util.getNBT(stack);
 		nbt.setInteger(RELOADING_PROGRESS, value);
 	}
 
-	public default boolean isReloading(ItemStack stack) {
+	public static boolean isReloading(ItemStack stack) {
 		return getReloadingProgress(stack) > 0;
 	}
 

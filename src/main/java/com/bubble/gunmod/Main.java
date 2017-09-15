@@ -39,7 +39,6 @@ public class Main
     @EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-	//	GunSoundRegistry.init();
 		proxy.init(event);
 	}
 

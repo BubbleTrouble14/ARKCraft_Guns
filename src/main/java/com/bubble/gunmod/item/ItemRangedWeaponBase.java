@@ -11,11 +11,8 @@ import static com.bubble.gunmod.a.IConsuming.setReloadingProgress;
 import static com.bubble.gunmod.a.IUseInterval.getIntervalTime;
 import static com.bubble.gunmod.a.IUseInterval.isIntervalPast;
 import static com.bubble.gunmod.a.IUseInterval.setIntervalTime;
-import static com.bubble.gunmod.item.ISoundEffects.soundEmpty;
 import static com.bubble.gunmod.item.ISoundEffects.soundFire;
 import static com.bubble.gunmod.item.ISoundEffects.soundReload;
-
-
 
 import com.bubble.gunmod.Main;
 import com.bubble.gunmod.a.IConsuming;
@@ -56,7 +53,7 @@ public abstract class ItemRangedWeaponBase extends Item implements IUseInterval,
 				// Shoot
 				if (!player.capabilities.isCreativeMode)
 					setAmmunition(stack, getAmmunition(stack) - 1);
-				soundFire(stack, player);
+					soundFire(stack, player, world);
 				world.spawnEntity(getAmmunitionItem(stack).createProjectile(player));
 				setIntervalTime(stack, getIntervalDuration());
 				if (getAmmunition(stack) == 0)

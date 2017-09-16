@@ -1,23 +1,41 @@
 package com.bubble.gunmod.common.item;
 
+import static com.bubble.gunmod.common.item.IConsuming.isReloading;
+
 import com.bubble.gunmod.common.item.attachment.AttachmentType;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ItemRangedWeapon extends ItemRangedWeaponBase implements ISupporting {
-	public ItemRangedWeapon(String name) {
-		super(name);
+	public ItemRangedWeapon(String name, int durability) {
+		super(name, durability);
+	}
 
-		addPropertyOverride(new ResourceLocation("attachment"), (stack, world, entity) -> {
-			AttachmentType at = ISupporting.getAttachmentType(stack);
-			if (at == null)
-				return 0;
-			for (AttachmentType type : getSupportedAttachmentTypes()) {
-				if (type == at) {
-					return type.getId();
+	@Override
+	protected void registerPropertyOverrides() {
+		addPropertyOverride(new ResourceLocation("reload_attachment"), new IItemPropertyGetter() {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
+				int out = 0;
+				if (isReloading(stack)) {
+					out |= 1;
 				}
+				AttachmentType at = ISupporting.getAttachmentType(stack);
+				if (at != null)
+					for (AttachmentType type : getSupportedAttachmentTypes()) {
+						if (type == at) {
+							out |= type.getId() << 1;
+						}
+					}
+				return out;
 			}
-			return 0;
 		});
 	}
 }

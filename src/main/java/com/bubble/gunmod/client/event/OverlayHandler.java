@@ -7,7 +7,7 @@ import static com.bubble.gunmod.common.item.IConsuming.isReloading;
 
 import org.lwjgl.opengl.GL11;
 
-import com.bubble.gunmod.common.item.ItemRangedWeapon;
+import com.bubble.gunmod.common.item.IConsuming;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -29,9 +29,9 @@ public class OverlayHandler {
 		EntityPlayer p = mc.player;
 		ItemStack stack = p.getHeldItemMainhand();
 		if (e.getType().equals(ElementType.HOTBAR)) {
-			if (!stack.isEmpty() && stack.getItem() instanceof ItemRangedWeapon) {
-				ItemRangedWeapon weapon = (ItemRangedWeapon) stack.getItem();
-				boolean loaded = getAmmunition(stack) == weapon.getAmmunitionCapacity();
+			if (!stack.isEmpty() && stack.getItem() instanceof IConsuming) {
+				IConsuming weapon = (IConsuming) stack.getItem();
+				boolean loaded = getAmmunition(stack) > 0;
 				GL11.glColor4f(1F, 1F, 1F, 1F);
 				GL11.glDisable(GL11.GL_LIGHTING);
 				int x0 = e.getResolution().getScaledWidth() / 2 - 88 + p.inventory.currentItem * 20;
@@ -39,13 +39,12 @@ public class OverlayHandler {
 				float f;
 				int color;
 				if (loaded) {
-					f = 1F;
+					f = Math.min((float) getAmmunition(stack) / weapon.getAmmunitionCapacity(), 1F);
 					if (p.getActiveItemStack() == stack) {
 						color = 0x60C60000;
 					} else {
 						color = 0x60348E00;
 					}
-
 				} else if (isReloading(stack)) {
 					f = Math.min((float) getReloadingProgress(stack) / weapon.getReloadingTime(), 1F);
 					color = 0x60EAA800;
@@ -56,7 +55,7 @@ public class OverlayHandler {
 				Gui.drawRect(x0, y0, x0 + 16, y0 - (int) (f * 16), color);
 			}
 		} else if (e.getType().equals(ElementType.HELMET)) {
-			if (stack != null && stack.getItem() instanceof ItemRangedWeapon) {
+			if (stack != null && stack.getItem() instanceof IConsuming) {
 				String text = "";
 				if (!p.capabilities.isCreativeMode) {
 					text = getAmmunition(stack) + "/" + getTotalAmmunition(stack, p);

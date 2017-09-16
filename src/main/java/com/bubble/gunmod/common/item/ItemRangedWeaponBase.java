@@ -8,28 +8,36 @@ import static com.bubble.gunmod.common.item.IConsuming.getReloadingProgress;
 import static com.bubble.gunmod.common.item.IConsuming.isReloading;
 import static com.bubble.gunmod.common.item.IConsuming.setAmmunition;
 import static com.bubble.gunmod.common.item.IConsuming.setReloadingProgress;
-import static com.bubble.gunmod.common.item.ISoundEffects.soundFire;
 import static com.bubble.gunmod.common.item.IUseInterval.getIntervalTime;
 import static com.bubble.gunmod.common.item.IUseInterval.isIntervalPast;
 import static com.bubble.gunmod.common.item.IUseInterval.setIntervalTime;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInterval, IConsuming, ISoundEffects {
+public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInterval, IConsuming {
 
-	public ItemRangedWeaponBase(String name) 
-	{
+	public ItemRangedWeaponBase(String name, int durability) {
 		super(name);
 		setMaxStackSize(1);
-		addPropertyOverride(new ResourceLocation("reloading"), (stack, world, entity) -> {
-			if (isReloading(stack))
+		setMaxDamage(durability);
+	}
+
+	@Override
+	protected void registerPropertyOverrides() {
+		addPropertyOverride(new ResourceLocation("reloading"), (stack, player, world) -> {
+			if (isReloading(stack)) {
 				return 1;
+			}
 			return 0;
 		});
 	}
@@ -38,18 +46,25 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItemMainhand();
 		if (!isReloading(stack) && isIntervalPast(stack)) {
-			if (getAmmunition(stack) == 0 && !player.capabilities.isCreativeMode) {
+			if (getAmmunition(stack) == 0 && !player.isCreative()) {
 				// Reload
-				setReloadingProgress(stack, getReloadingTime());
+				if (!startReload(stack, player, world)) {
+					soundEmpty(stack, player, world);
+				}
 			} else {
 				// Shoot
-				if (!player.capabilities.isCreativeMode)
+				if (!player.isCreative()) {
 					setAmmunition(stack, getAmmunition(stack) - 1);
-					soundFire(stack, player, world);
-				world.spawnEntity(getAmmunitionItem(stack).createProjectile(player));
+				}
+				soundFire(stack, player, world);
+				if (!player.isCreative()) {
+					world.spawnEntity(getAmmunitionItem(stack).createProjectile(player));
+					stack.damageItem(1, player);
+				} else
+					world.spawnEntity(((IConsuming) stack.getItem()).getDefaultAmmunition().createProjectile(player));
 				setIntervalTime(stack, getIntervalDuration());
-				if (getAmmunition(stack) == 0 && !player.capabilities.isCreativeMode)
-					setReloadingProgress(stack, getReloadingTime());
+				if (!player.isCreative() && getAmmunition(stack) == 0)
+					startReload(stack, player, world);
 			}
 		}
 		return super.onItemRightClick(world, player, hand);
@@ -63,8 +78,7 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 			if (isSelected) {
 				int time = getReloadingProgress(stack) - 1;
 				setReloadingProgress(stack, time);
-				if (time == 0) 
-				{
+				if (time == 0) {
 					for (ItemStack s : player.inventory.mainInventory) {
 						if (!s.isEmpty() && s.getItem() instanceof ItemAmmunition) {
 							if (isValidAmmunition((ItemAmmunition) s.getItem())) {
@@ -87,5 +101,21 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 		if (!slotChanged && oldStack.getItem() == newStack.getItem())
 			return false;
 		return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
+	}
+
+	@Override
+	public boolean onEntityItemUpdate(EntityItem entityItem) {
+		cancelReloading(entityItem.getItem());
+		return super.onEntityItemUpdate(entityItem);
+	}
+
+	static void soundFire(ItemStack stack, EntityPlayer p, World w) {
+		String soundPath = stack.getItem().getRegistryName() + "_shoot";
+		w.playSound(p, p.getPosition(), SoundEvent.REGISTRY.getObject(new ResourceLocation(soundPath)),
+				SoundCategory.NEUTRAL, 0.7F, 0.9F / (0.2F + 0.0F));
+	}
+
+	static void soundEmpty(ItemStack stack, EntityPlayer p, World w) {
+		w.playSound(p, p.getPosition(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F / 0.8F);
 	}
 }

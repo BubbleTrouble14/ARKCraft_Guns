@@ -366,61 +366,49 @@
 	    "overrides": [
         {
             "predicate": {
-                "reloading": 1
+                "reload_attachment": 1
             },
             "model": "gunmod:item/longneck_rifle_reload"
-        },
-        {
+        },{
             "predicate": {
-                "attachment": 1,
-                "reloading":1
-            },
-            "model": "gunmod:item/longneck_rifle_scope_reload"
-        },
-        {
-            "predicate": {
-                "attachment": 2,
-                "reloading":1
-            },
-            "model": "gunmod:item/longneck_rifle_flashlight_reload"
-        },
-        {
-            "predicate": {
-                "attachment": 3,
-                "reloading":1
-            },
-            "model": "gunmod:item/longneck_rifle_laser_reload"
-        },
-        {
-            "predicate": {
-                "attachment": 4,
-                "reloading":1
-            },
-            "model": "gunmod:item/longneck_rifle_silencer_reload"
-        },
-        {
-            "predicate": {
-                "attachment": 1
+                "reload_attachment": 2
             },
             "model": "gunmod:item/longneck_rifle_scope"
-        },
-        {
+        },{
             "predicate": {
-                "attachment": 2
+                "reload_attachment": 3
+            },
+            "model": "gunmod:item/longneck_rifle_scope_reload"
+        },{
+            "predicate": {
+                "reload_attachment": 6
             },
             "model": "gunmod:item/longneck_rifle_flashlight"
-        },
-        {
+        },{
             "predicate": {
-                "attachment": 3
+                "reload_attachment": 7
+            },
+            "model": "gunmod:item/longneck_rifle_flashlight_reload"
+        },{
+            "predicate": {
+                "reload_attachment": 8
             },
             "model": "gunmod:item/longneck_rifle_laser"
-        },
-        {
+        },{
             "predicate": {
-                "attachment": 4
+                "reload_attachment": 9
+            },
+            "model": "gunmod:item/longneck_rifle_laser_reload"
+        },{
+            "predicate": {
+                "reload_attachment": 10
             },
             "model": "gunmod:item/longneck_rifle_silencer"
+        },{
+            "predicate": {
+                "reload_attachment": 11
+            },
+            "model": "gunmod:item/longneck_rifle_silencer_reload"
         }
     ]
 }

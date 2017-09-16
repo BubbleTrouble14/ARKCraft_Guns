@@ -10,12 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.world.World;
 
 public interface IConsuming {
 
 	public static void consumeAmmunition(EntityPlayer player, ItemStack stack, ItemAmmunition item) {
 		IConsuming stackItem = (IConsuming) stack.getItem();
-		int cap = stackItem.getAmmunitionCapacity();
+		int cap = stackItem.getAmmunitionCapacity() - IConsuming.getAmmunition(stack);
 		NonNullList<ItemStack> inv = player.inventory.mainInventory;
 
 		for (ItemStack i : inv) {
@@ -83,6 +86,26 @@ public interface IConsuming {
 
 	public static void cancelReloading(ItemStack stack) {
 		setReloadingProgress(stack, 0);
+	}
+
+	public static void soundReload(ItemStack stack, EntityPlayer p, World w) {
+		String soundPath = stack.getItem().getRegistryName() + "_reload";
+		w.playSound(p, p.getPosition(), SoundEvent.REGISTRY.getObject(new ResourceLocation(soundPath)),
+				SoundCategory.NEUTRAL, 0.7F, 0.9F / (0.2F + 0.0F));
+	}
+
+	public default boolean startReload(ItemStack stack, EntityPlayer player, World world) {
+		if (!isReloading(stack))
+			for (ItemStack s : player.inventory.mainInventory) {
+				if (!s.isEmpty() && s.getItem() instanceof ItemAmmunition) {
+					if (isValidAmmunition((ItemAmmunition) s.getItem())) {
+						setReloadingProgress(stack, getReloadingTime());
+						soundReload(stack, player, world);
+						return true;
+					}
+				}
+			}
+		return false;
 	}
 
 	public ItemAmmunition getDefaultAmmunition();

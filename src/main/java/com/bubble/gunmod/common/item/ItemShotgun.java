@@ -5,7 +5,7 @@ import com.bubble.gunmod.RegisterItems;
 public class ItemShotgun extends ItemRangedWeaponBase {
 
 	public ItemShotgun(String name) {
-		super(name);
+		super(name, 750);
 	}
 
 	@Override

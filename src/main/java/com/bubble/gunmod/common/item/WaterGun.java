@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WaterGun extends ItemRangedWeapon {
 
 	public WaterGun(String name) {
-		super(name);
+		super(name, 50);
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -235,5 +235,13 @@
 			"translation":  [ -3.004, 6.295, 0.803 ],
 			"scale":  [ 1.4, 1.4, 1.4 ]
 		}
-	}
+	},
+	    "overrides": [
+        {
+            "predicate": {
+                "reloading": 1
+            },
+            "model": "gunmod:item/shotgun_reload"
+        }
+    ]
 }

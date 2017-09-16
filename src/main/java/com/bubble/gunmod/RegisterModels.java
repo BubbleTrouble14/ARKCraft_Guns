@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bubble.gunmod.common.item.ISupporting;
+import com.bubble.gunmod.common.item.ItemBase;
 import com.bubble.gunmod.common.item.ItemFabricatedPistol;
 import com.bubble.gunmod.common.item.ItemLongneckRifle;
+import com.bubble.gunmod.common.item.ItemRangedWeapon;
 import com.bubble.gunmod.common.item.ItemShotgun;
 import com.bubble.gunmod.common.item.ItemSimplePistol;
 import com.bubble.gunmod.common.item.attachment.ItemFlashlight;
@@ -48,36 +50,18 @@ public class RegisterModels {
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) 
 	{
-		// Attachments
-		ModelLoader.setCustomModelResourceLocation(scope, 0,	new ModelResourceLocation(scope.getRegistryName(), "inventory"));
-		ModelLoader.setCustomModelResourceLocation(flashlight, 0,new ModelResourceLocation(flashlight.getRegistryName(), "inventory"));
-		ModelLoader.setCustomModelResourceLocation(silencer, 0, new ModelResourceLocation(silencer.getRegistryName(), "inventory"));
-		ModelLoader.setCustomModelResourceLocation(laser, 0, new ModelResourceLocation(laser.getRegistryName(), "inventory"));
-
-		// Ammo
-		ModelLoader.setCustomModelResourceLocation(RegisterItems.simple_rifle_ammo, 0, new ModelResourceLocation(Main.MODID + ":" + "simple_rifle_ammo", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(RegisterItems.simple_shotgun_ammo, 0, new ModelResourceLocation(Main.MODID + ":" + "simple_shotgun_ammo", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(RegisterItems.simple_bullet, 0, new ModelResourceLocation(Main.MODID + ":" + "simple_bullet", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(RegisterItems.advanced_bullet, 0, new ModelResourceLocation(Main.MODID + ":" + "advanced_bullet", "inventory"));
-		
-		List<Item> weapons = new ArrayList<>();
-		weapons.add(fabricated_pistol);
-		weapons.add(simple_pistol);
-		weapons.add(shotgun);
-		weapons.add(longneck_rifle);
-		for(Item i : weapons)
+		for(Item item : ItemBase.itemList)
 		{
-			initModels(i);
+			ModelLoader.setCustomModelResourceLocation(item, 0,	new ModelResourceLocation(item.getRegistryName(), "inventory"));
+			if(item instanceof ItemRangedWeapon)
+			{
+				initModels(item);
+			}
 		}
 	}
 	
 	public static void initModels(Item item)
 	{
-		ModelLoader.setCustomModelResourceLocation(item, 0,
-					new ModelResourceLocation(item.getRegistryName(), "inventory"));
-		
-		if(!(item instanceof ISupporting))
-		{
 			ModelResourceLocation scope = new ModelResourceLocation(item.getRegistryName() + "_scope", "inventory");
 			ModelResourceLocation scopereload = new ModelResourceLocation(item.getRegistryName() + "_scope_reload", "inventory");
 			ModelResourceLocation laser = new ModelResourceLocation(item.getRegistryName() + "_laser", "inventory");
@@ -89,7 +73,6 @@ public class RegisterModels {
 			ModelResourceLocation reload = new ModelResourceLocation(item.getRegistryName() + "_reload", "inventory");
 			
 			ModelBakery.registerItemVariants(item, scope, laser, silencer, flashlight, reload, scopereload,
-					laserreload, silencerreload, flashlightreload);
-		}
+					laserreload, silencerreload, flashlightreload);		
 	}
 }

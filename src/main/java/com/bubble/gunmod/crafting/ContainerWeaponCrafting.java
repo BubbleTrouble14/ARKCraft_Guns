@@ -16,21 +16,26 @@ import net.minecraft.util.NonNullList;
 
 public class ContainerWeaponCrafting extends Container {
     private InventoryPlayer playerInventory;
-    private int slotCount = 0;
     private WeaponCraftingSlot craftingSlot;
 
     public ContainerWeaponCrafting(InventoryPlayer playerInventory) {
 	this.playerInventory = playerInventory;
 
-	int slot_start_x = 100;
-	int slot_start_y = 100;
+	final int PLAYER_INVENTORY_YPOS = 84;
+	for (int row = 0; row < 3; row++) {
+	    for (int col = 0; col < 9; col++) {
+		int slotIndex = col + row * 9 + 9;
+		addSlotToContainer(
+			new Slot(playerInventory, slotIndex, 8 + col * 18, PLAYER_INVENTORY_YPOS + row * 18));
+	    }
+	}
 
-	playerInventory.mainInventory.forEach(i -> {
-	    addSlotToContainer(new Slot(playerInventory, slotCount, slot_start_x + 16 * slotCount / 9,
-		    slot_start_y + 16 * slotCount / 4));
-	    slotCount++;
-	});
-	this.craftingSlot = new WeaponCraftingSlot(50, 50);
+	final int HOTBAR_YPOS = 142;
+	for (int col = 0; col < 9; col++) {
+	    addSlotToContainer(new Slot(playerInventory, col, 8 + col * 18, HOTBAR_YPOS));
+	}
+
+	this.craftingSlot = new WeaponCraftingSlot(79, 30);
 	addSlotToContainer(craftingSlot);
     }
 
@@ -171,6 +176,17 @@ public class ContainerWeaponCrafting extends Container {
 	public ItemStack decrStackSize(int amount) {
 	    return recipes.get(index).output.copy();
 	}
+
+	@Override
+	public void putStack(ItemStack stack) {
+	}
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+	if (getSlot(index) instanceof WeaponCraftingSlot)
+	    return ItemStack.EMPTY;
+	return super.transferStackInSlot(playerIn, index);
     }
 
     public void moveLeft() {

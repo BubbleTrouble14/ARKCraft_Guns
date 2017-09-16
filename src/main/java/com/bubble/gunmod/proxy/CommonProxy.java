@@ -9,6 +9,7 @@ import com.bubble.gunmod.crafting.ContainerWeaponCrafting;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -48,8 +49,14 @@ public abstract class CommonProxy {
     public void init(FMLInitializationEvent event) {
 	registerEventHandlers();
 	// Recipes.init();
-	ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.fabricated_pistol),
-		new ItemStack(Items.GUNPOWDER, 10));
+	if (Loader.isModLoaded("arkcraft")) {
+
+	} else {
+	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.fabricated_pistol),
+		    new ItemStack(Items.GUNPOWDER, 10));
+	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.laser),
+		    new ItemStack(Items.GUNPOWDER, 10));
+	}
     }
 
     public void postInit(FMLPostInitializationEvent event) {

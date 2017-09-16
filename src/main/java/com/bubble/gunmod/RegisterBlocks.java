@@ -31,7 +31,7 @@ public class RegisterBlocks {
 		    EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		playerIn.openGui(Main.instance(), CommonProxy.GUI.CRAFTING.id, playerIn.world, pos.getX(), pos.getY(),
 			pos.getZ());
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+		return false;
 	    }
 	};
 	event.getRegistry().register(crafting);

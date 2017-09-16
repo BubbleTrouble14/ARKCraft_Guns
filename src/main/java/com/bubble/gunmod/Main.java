@@ -17,36 +17,36 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = Main.MODID, version = Main.VERSION)
 public class Main {
-	public static final String MODID = "gunmod";
-	public static final String VERSION = "1.0";
+    public static final String MODID = "gunmod";
+    public static final String VERSION = "1.0";
 
-	@Instance(Main.MODID)
-	private static Main instance;
+    @Instance(Main.MODID)
+    private static Main instance;
 
-	@SidedProxy(clientSide = "com.bubble.gunmod.proxy.ClientProxy", serverSide = "com.bubble.gunmod.proxy.ServerProxy")
-	public static CommonProxy proxy;
+    @SidedProxy(clientSide = "com.bubble.gunmod.proxy.ClientProxy", serverSide = "com.bubble.gunmod.proxy.ServerProxy")
+    public static CommonProxy proxy;
 
-	public static CreativeTabs tabGuns = new GunTab("gunTab");
-	public static SimpleNetworkWrapper modChannel;
-	public static Logger logger;
+    public static CreativeTabs tabGuns = new GunTab("gunTab");
+    public static SimpleNetworkWrapper modChannel;
+    public static Logger logger;
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		logger = event.getModLog();
-		proxy.preInit(event);
-	}
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+	logger = event.getModLog();
+	proxy.preInit(event);
+    }
 
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		proxy.init(event);
-	}
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+	proxy.init(event);
+    }
 
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		proxy.postInit(event);
-	}
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+	proxy.postInit(event);
+    }
 
-	public static Main instance() {
-		return instance;
-	}
+    public static Main instance() {
+	return instance;
+    }
 }

@@ -38,6 +38,6 @@ public class ItemFabricatedPistol extends ItemRangedWeapon {
 
 	@Override
 	public int getIntervalDuration() {
-		return 20; //1S
+		return 6; //1
 	}
 }

@@ -12,7 +12,6 @@ import static com.bubble.gunmod.a.IUseInterval.getIntervalTime;
 import static com.bubble.gunmod.a.IUseInterval.isIntervalPast;
 import static com.bubble.gunmod.a.IUseInterval.setIntervalTime;
 import static com.bubble.gunmod.item.ISoundEffects.soundFire;
-import static com.bubble.gunmod.item.ISoundEffects.soundReload;
 
 import com.bubble.gunmod.Main;
 import com.bubble.gunmod.a.IConsuming;
@@ -46,7 +45,7 @@ public abstract class ItemRangedWeaponBase extends Item implements IUseInterval,
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItemMainhand();
 		if (!isReloading(stack) && isIntervalPast(stack)) {
-			if (getAmmunition(stack) == 0) {
+			if (getAmmunition(stack) == 0 && !player.capabilities.isCreativeMode) {
 				// Reload
 				setReloadingProgress(stack, getReloadingTime());
 			} else {
@@ -56,7 +55,7 @@ public abstract class ItemRangedWeaponBase extends Item implements IUseInterval,
 					soundFire(stack, player, world);
 				world.spawnEntity(getAmmunitionItem(stack).createProjectile(player));
 				setIntervalTime(stack, getIntervalDuration());
-				if (getAmmunition(stack) == 0)
+				if (getAmmunition(stack) == 0 && !player.capabilities.isCreativeMode)
 					setReloadingProgress(stack, getReloadingTime());
 			}
 		}
@@ -71,7 +70,8 @@ public abstract class ItemRangedWeaponBase extends Item implements IUseInterval,
 			if (isSelected) {
 				int time = getReloadingProgress(stack) - 1;
 				setReloadingProgress(stack, time);
-				if (time == 0) {
+				if (time == 0) 
+				{
 					for (ItemStack s : player.inventory.mainInventory) {
 						if (!s.isEmpty() && s.getItem() instanceof ItemAmmunition) {
 							if (isValidAmmunition((ItemAmmunition) s.getItem())) {

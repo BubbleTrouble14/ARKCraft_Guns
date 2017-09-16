@@ -31,6 +31,6 @@ public class ItemShotgun extends ItemRangedWeaponBase {
 
 	@Override
 	public int getIntervalDuration() {
-		return 40; // 2s	
+		return 10; // 2s	
 	}
 }

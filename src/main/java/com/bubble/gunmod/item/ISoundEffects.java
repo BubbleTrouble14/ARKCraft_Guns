@@ -14,8 +14,6 @@ public interface ISoundEffects
 	{
 		String soundPath = stack.getItem().getRegistryName() + "_shoot";
 		w.playSound(p, p.getPosition(), SoundEvent.REGISTRY.getObject(new ResourceLocation(soundPath)), SoundCategory.NEUTRAL, 0.7F, 0.9F / (0.2F + 0.0F));
-	//	w.playSound(p, p.getPosition(), SoundEvent.REGISTRY.getObject(new ResourceLocation(soundPath)),
-		//		SoundCategory.PLAYERS, 0.7F, 0.9F / (0.2F + 0.0F));
 	}
 	
 	static void soundReload(ItemStack stack, EntityPlayer p, World w)

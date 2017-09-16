@@ -17,7 +17,7 @@ public class ItemLongneckRifle extends ItemRangedWeapon {
 
 	@Override
 	public int getReloadingTime() {
-		return 80;
+		return 100;
 	}
 
 	@Override
@@ -38,6 +38,6 @@ public class ItemLongneckRifle extends ItemRangedWeapon {
 
 	@Override
 	public int getIntervalDuration() {
-		return 50; // 2.5s
+		return 10; // 2.5s
 	}
 }

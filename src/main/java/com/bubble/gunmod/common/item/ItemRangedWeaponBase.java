@@ -13,29 +13,25 @@ import static com.bubble.gunmod.common.item.IUseInterval.getIntervalTime;
 import static com.bubble.gunmod.common.item.IUseInterval.isIntervalPast;
 import static com.bubble.gunmod.common.item.IUseInterval.setIntervalTime;
 
-import com.bubble.gunmod.Main;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public abstract class ItemRangedWeaponBase extends Item implements IUseInterval, IConsuming, ISoundEffects {
+public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInterval, IConsuming, ISoundEffects {
 
-	public ItemRangedWeaponBase(String name) {
+	public ItemRangedWeaponBase(String name) 
+	{
+		super(name);
 		setMaxStackSize(1);
-		setRegistryName(name);
-		setUnlocalizedName(Main.MODID + "." + name);
 		addPropertyOverride(new ResourceLocation("reloading"), (stack, world, entity) -> {
 			if (isReloading(stack))
 				return 1;
 			return 0;
 		});
-		setCreativeTab(Main.tabGuns);
 	}
 
 	@Override

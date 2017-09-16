@@ -1,7 +1,5 @@
 package com.bubble.gunmod.common.entity;
 
-import com.bubble.gunmod.a.EntityProjectile;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;

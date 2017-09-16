@@ -1,13 +1,13 @@
 package com.bubble.gunmod.client.event;
 
-import static com.bubble.gunmod.a.IConsuming.getAmmunition;
-import static com.bubble.gunmod.a.IConsuming.getReloadingProgress;
-import static com.bubble.gunmod.a.IConsuming.getTotalAmmunition;
-import static com.bubble.gunmod.a.IConsuming.isReloading;
+import static com.bubble.gunmod.common.item.IConsuming.getAmmunition;
+import static com.bubble.gunmod.common.item.IConsuming.getReloadingProgress;
+import static com.bubble.gunmod.common.item.IConsuming.getTotalAmmunition;
+import static com.bubble.gunmod.common.item.IConsuming.isReloading;
 
 import org.lwjgl.opengl.GL11;
 
-import com.bubble.gunmod.item.ItemRangedWeapon;
+import com.bubble.gunmod.common.item.ItemRangedWeapon;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

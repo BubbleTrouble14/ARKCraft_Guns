@@ -1,7 +1,7 @@
 package com.bubble.gunmod.common.network;
 
 import com.bubble.gunmod.Main;
-import com.bubble.gunmod.a.ISupporting;
+import com.bubble.gunmod.common.item.ISupporting;
 import com.bubble.gunmod.proxy.CommonProxy;
 
 import io.netty.buffer.ByteBuf;

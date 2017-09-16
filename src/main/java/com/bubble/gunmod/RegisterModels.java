@@ -3,15 +3,15 @@ package com.bubble.gunmod;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bubble.gunmod.a.ISupporting;
-import com.bubble.gunmod.item.ItemFabricatedPistol;
-import com.bubble.gunmod.item.ItemLongneckRifle;
-import com.bubble.gunmod.item.ItemShotgun;
-import com.bubble.gunmod.item.ItemSimplePistol;
-import com.bubble.gunmod.item.attachment.ItemFlashlight;
-import com.bubble.gunmod.item.attachment.ItemLaser;
-import com.bubble.gunmod.item.attachment.ItemScope;
-import com.bubble.gunmod.item.attachment.ItemSilencer;
+import com.bubble.gunmod.common.item.ISupporting;
+import com.bubble.gunmod.common.item.ItemFabricatedPistol;
+import com.bubble.gunmod.common.item.ItemLongneckRifle;
+import com.bubble.gunmod.common.item.ItemShotgun;
+import com.bubble.gunmod.common.item.ItemSimplePistol;
+import com.bubble.gunmod.common.item.attachment.ItemFlashlight;
+import com.bubble.gunmod.common.item.attachment.ItemLaser;
+import com.bubble.gunmod.common.item.attachment.ItemScope;
+import com.bubble.gunmod.common.item.attachment.ItemSilencer;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

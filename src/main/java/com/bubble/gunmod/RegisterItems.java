@@ -1,19 +1,19 @@
 package com.bubble.gunmod;
 
-import com.bubble.gunmod.a.EntityProjectile;
-import com.bubble.gunmod.a.ItemAmmunition;
 import com.bubble.gunmod.common.entity.EntityAdvancedBullet;
+import com.bubble.gunmod.common.entity.EntityProjectile;
 import com.bubble.gunmod.common.entity.EntitySimpleBullet;
 import com.bubble.gunmod.common.entity.EntitySimpleRifleAmmo;
 import com.bubble.gunmod.common.entity.EntitySimpleShotgunAmmo;
-import com.bubble.gunmod.item.ItemFabricatedPistol;
-import com.bubble.gunmod.item.ItemLongneckRifle;
-import com.bubble.gunmod.item.ItemShotgun;
-import com.bubble.gunmod.item.ItemSimplePistol;
-import com.bubble.gunmod.item.attachment.ItemFlashlight;
-import com.bubble.gunmod.item.attachment.ItemLaser;
-import com.bubble.gunmod.item.attachment.ItemScope;
-import com.bubble.gunmod.item.attachment.ItemSilencer;
+import com.bubble.gunmod.common.item.ItemAmmunition;
+import com.bubble.gunmod.common.item.ItemFabricatedPistol;
+import com.bubble.gunmod.common.item.ItemLongneckRifle;
+import com.bubble.gunmod.common.item.ItemShotgun;
+import com.bubble.gunmod.common.item.ItemSimplePistol;
+import com.bubble.gunmod.common.item.attachment.ItemFlashlight;
+import com.bubble.gunmod.common.item.attachment.ItemLaser;
+import com.bubble.gunmod.common.item.attachment.ItemScope;
+import com.bubble.gunmod.common.item.attachment.ItemSilencer;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

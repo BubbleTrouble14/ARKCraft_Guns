@@ -1,8 +1,8 @@
 package com.bubble.gunmod.common.handlers;
 
-import com.bubble.gunmod.a.ContainerAttachment;
-import com.bubble.gunmod.a.GuiAttachment;
-import com.bubble.gunmod.a.ISupporting;
+import com.bubble.gunmod.client.gui.GuiAttachment;
+import com.bubble.gunmod.common.container.ContainerAttachment;
+import com.bubble.gunmod.common.item.ISupporting;
 import com.bubble.gunmod.proxy.CommonProxy;
 
 import net.minecraft.entity.player.EntityPlayer;

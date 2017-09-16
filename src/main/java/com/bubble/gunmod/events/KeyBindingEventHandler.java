@@ -1,10 +1,10 @@
 package com.bubble.gunmod.events;
 
 import com.bubble.gunmod.Main;
-import com.bubble.gunmod.a.ISupporting;
 import com.bubble.gunmod.client.KeyBindings;
+import com.bubble.gunmod.common.item.ISupporting;
+import com.bubble.gunmod.common.item.ItemRangedWeapon;
 import com.bubble.gunmod.common.network.OpenAttachmentInventory;
-import com.bubble.gunmod.item.ItemRangedWeapon;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

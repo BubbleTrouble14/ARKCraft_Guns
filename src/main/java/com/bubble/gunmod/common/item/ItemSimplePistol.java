@@ -6,7 +6,7 @@ import com.bubble.gunmod.common.item.attachment.AttachmentType;
 public class ItemSimplePistol extends ItemRangedWeapon {
 
 	public ItemSimplePistol(String name) {
-		super(name, 400);
+		super(name, 150);
 	}
 
 	@Override

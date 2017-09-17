@@ -6,7 +6,7 @@ import com.bubble.gunmod.common.item.attachment.AttachmentType;
 public class ItemLongneckRifle extends ItemRangedWeapon {
 
 	public ItemLongneckRifle(String name) {
-		super(name, 1000);
+		super(name, 350);
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class ItemLongneckRifle extends ItemRangedWeapon {
 
 	@Override
 	public int getReloadingTime() {
-		return 100;
+		return 70;
 	}
 
 	@Override

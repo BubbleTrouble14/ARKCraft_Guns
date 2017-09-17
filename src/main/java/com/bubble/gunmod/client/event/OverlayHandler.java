@@ -41,12 +41,21 @@ public class OverlayHandler {
 				int y0 = e.getResolution().getScaledHeight() - 3;
 				float f;
 				int color;
-				if (loaded) {
-					f = Math.min((float) getAmmunition(stack) / weapon.getAmmunitionCapacity(), 1F);
-					if (p.getActiveItemStack() == stack) {
-						color = 0x60C60000;
-					} else {
+				if (loaded)
+				{
+					if(!p.capabilities.isCreativeMode)
+					{
+						f = Math.min((float) getAmmunition(stack) / weapon.getAmmunitionCapacity(), 1F);
+						if (p.getActiveItemStack() == stack) {
+							color = 0x60C60000;
+						} else {
+							color = 0x60348E00;
+						}
+					}
+					else
+					{
 						color = 0x60348E00;
+						f = 1F;
 					}
 				} else if (isReloading(stack)) {
 					f = Math.min((float) getReloadingProgress(stack) / weapon.getReloadingTime(), 1F);
@@ -71,16 +80,4 @@ public class OverlayHandler {
 			}
 		}
 	}
-	
-	@SubscribeEvent
-	public static void mouseOverTooltip(ItemTooltipEvent event)
-	{
-	//	EntityPlayer p = Minecraft.getMinecraft().player;
-		if (Minecraft.getMinecraft().currentScreen instanceof GuiWeaponCrafting)
-		{
-			ItemStack stack = event.getItemStack();
-		//	System.out.println(stack + "");
-		}
-	}
-
 }

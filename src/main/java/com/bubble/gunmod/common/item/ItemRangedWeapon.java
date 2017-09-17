@@ -25,7 +25,8 @@ public abstract class ItemRangedWeapon extends ItemRangedWeaponBase implements I
 			public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
 				int out = 0;
 				if (isReloading(stack)) {
-					out |= 1;
+					//TODOD return 1
+					out |= 0;
 				}
 				AttachmentType at = ISupporting.getAttachmentType(stack);
 				if (at != null)

@@ -47,25 +47,25 @@ public class RegisterItems {
 	simple_bullet = registerItem(event, new ItemAmmunition("simple_bullet") {
 	    @Override
 	    public EntityProjectile createProjectile(EntityPlayer player) {
-		return new EntitySimpleBullet(player.world, player, 5, 0, 5, 20);
+		return new EntitySimpleBullet(player.world, player, 5, 2.5f, 6, 20);
 	    }
 	});
 	simple_rifle_ammo = registerItem(event, new ItemAmmunition("simple_rifle_ammo") {
 	    @Override
 	    public EntityProjectile createProjectile(EntityPlayer player) {
-		return new EntitySimpleRifleAmmo(player.world, player, 5, 0, 5, 20);
+		return new EntitySimpleRifleAmmo(player.world, player, 7F, 0F, 16, 200);
 	    }
 	});
 	simple_shotgun_ammo = registerItem(event, new ItemAmmunition("simple_shotgun_ammo") {
 	    @Override
 	    public EntityProjectile createProjectile(EntityPlayer player) {
-		return new EntitySimpleShotgunAmmo(player.world, player, 5, 0, 5, 20);
+		return new EntitySimpleShotgunAmmo(player.world, player, 6F, 15F, 14, 5);
 	    }
 	});
 	advanced_bullet = registerItem(event, new ItemAmmunition("advanced_bullet") {
 	    @Override
 	    public EntityProjectile createProjectile(EntityPlayer player) {
-		return new EntityAdvancedBullet(player.world, player, 5, 0, 5, 20);
+		return new EntityAdvancedBullet(player.world, player, 6F, 1.4F, 12, 80);
 	    }
 	});
 

@@ -12,6 +12,11 @@ import static com.bubble.gunmod.common.item.IUseInterval.getIntervalTime;
 import static com.bubble.gunmod.common.item.IUseInterval.isIntervalPast;
 import static com.bubble.gunmod.common.item.IUseInterval.setIntervalTime;
 
+import java.util.List;
+
+import org.lwjgl.input.Mouse;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +31,12 @@ import net.minecraft.world.World;
 
 public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInterval, IConsuming {
 
-	public ItemRangedWeaponBase(String name, int durability) {
+	private int durability;
+	
+	public ItemRangedWeaponBase(String name, int durability) 
+	{
 		super(name);
+		this.durability = durability;
 		setMaxStackSize(1);
 		setMaxDamage(durability);
 	}
@@ -36,15 +45,24 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 	protected void registerPropertyOverrides() {
 		addPropertyOverride(new ResourceLocation("reloading"), (stack, player, world) -> {
 			if (isReloading(stack)) {
-				return 1;
+				//TODOD return 1
+				return 0;
 			}
 			return 0;
 		});
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) 
+	{
+		//Scope
+		return super.onItemRightClick(world, player, hand);
+	}
+	
+	public void onLeftClick(World world, EntityPlayer player)
+	{
 		ItemStack stack = player.getHeldItemMainhand();
+	//	System.out.println("reached");
 		if (!isReloading(stack) && isIntervalPast(stack)) {
 			if (getAmmunition(stack) == 0 && !player.isCreative()) {
 				// Reload
@@ -67,13 +85,15 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 					startReload(stack, player, world);
 			}
 		}
-		return super.onItemRightClick(world, player, hand);
 	}
+
+	static boolean notClickedYet = true;
 
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 		EntityPlayer player = (EntityPlayer) entityIn;
+		
 		if (isReloading(stack)) {
 			if (isSelected) {
 				int time = getReloadingProgress(stack) - 1;
@@ -118,4 +138,18 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 	static void soundEmpty(ItemStack stack, EntityPlayer p, World w) {
 		w.playSound(p, p.getPosition(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F / 0.8F);
 	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	{
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		tooltip.add("Durability " + this.getDamage(stack) + "/" + this.durability);
+	}
+	
+	@Override
+	public int getItemEnchantability()
+	{
+		return 0;
+	}
+	
 }

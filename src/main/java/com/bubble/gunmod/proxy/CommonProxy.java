@@ -7,6 +7,7 @@ import com.bubble.gunmod.common.network.OpenAttachmentInventory;
 import com.bubble.gunmod.common.network.ReloadMessage;
 import com.bubble.gunmod.crafting.ContainerWeaponCrafting;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
@@ -52,11 +53,18 @@ public abstract class CommonProxy {
 	if (Loader.isModLoaded("arkcraft")) {
 
 	} else {
+	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.simple_pistol),
+		    new ItemStack(Items.IRON_INGOT, 40), new ItemStack(Blocks.LOG, 25), new ItemStack(Items.GUNPOWDER, 10));
+	    
 	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.fabricated_pistol),
-		    new ItemStack(Items.GUNPOWDER, 10));
-	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.laser),
-		    new ItemStack(Items.GUNPOWDER, 10));
-	}
+			    new ItemStack(Items.IRON_INGOT, 80), new ItemStack(Blocks.LOG, 40), new ItemStack(Items.GUNPOWDER, 20));
+	    
+	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.longneck_rifle),
+			    new ItemStack(Items.IRON_INGOT, 90), new ItemStack(Blocks.LOG, 30), new ItemStack(Items.GUNPOWDER, 16));
+	    
+	    ContainerWeaponCrafting.registerRecipe(new ItemStack(RegisterItems.shotgun),
+			    new ItemStack(Items.IRON_INGOT, 60), new ItemStack(Blocks.LOG, 30), new ItemStack(Items.GUNPOWDER, 14));
+		}
     }
 
     public void postInit(FMLPostInitializationEvent event) {

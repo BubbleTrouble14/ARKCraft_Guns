@@ -8,6 +8,8 @@ import static com.bubble.gunmod.common.item.IConsuming.isReloading;
 import org.lwjgl.opengl.GL11;
 
 import com.bubble.gunmod.common.item.IConsuming;
+import com.bubble.gunmod.crafting.GuiWeaponCrafting;
+import com.mojang.realmsclient.gui.ChatFormatting;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -15,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -68,4 +71,16 @@ public class OverlayHandler {
 			}
 		}
 	}
+	
+	@SubscribeEvent
+	public static void mouseOverTooltip(ItemTooltipEvent event)
+	{
+	//	EntityPlayer p = Minecraft.getMinecraft().player;
+		if (Minecraft.getMinecraft().currentScreen instanceof GuiWeaponCrafting)
+		{
+			ItemStack stack = event.getItemStack();
+		//	System.out.println(stack + "");
+		}
+	}
+
 }

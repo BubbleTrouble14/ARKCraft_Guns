@@ -44,5 +44,17 @@ public class LeftClickEvent {
 				}
 			}
 		}
+		
+//		if (rightHandStack.getItem() instanceof ItemRangedWeaponBase) {
+//			evt.setCanceled(true);
+//			if (Minecraft.getMinecraft().gameSettings.keyBindAttack.isPressed()) 
+//			{
+//				Main.modChannel.sendToServer(new LeftClickedMessage());
+//				ItemRangedWeapon i = (ItemRangedWeapon)rightHandStack.getItem();
+//				i.onLeftClick(thePlayer.world, thePlayer);
+//			}
+//		}
+		
+		
 	}
 }

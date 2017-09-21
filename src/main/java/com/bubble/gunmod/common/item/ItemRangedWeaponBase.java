@@ -14,13 +14,12 @@ import static com.bubble.gunmod.common.item.IUseInterval.setIntervalTime;
 
 import java.util.List;
 
-import org.lwjgl.input.Mouse;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
@@ -29,7 +28,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInterval, IConsuming {
+public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInterval, IConsuming{
 
 	private int durability;
 	
@@ -51,6 +50,11 @@ public abstract class ItemRangedWeaponBase extends ItemBase implements IUseInter
 			return 0;
 		});
 	}
+	
+    public EnumAction getItemUseAction(ItemStack stack)
+    {
+        return EnumAction.NONE;
+    }
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) 
